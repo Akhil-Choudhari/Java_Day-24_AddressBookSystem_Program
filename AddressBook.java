@@ -10,7 +10,6 @@ public class AddressBook {
 	static List<ContactDetails> contactDetailsList = new ArrayList<ContactDetails>();
 	static Scanner scanner = new Scanner(System.in);
 
-	
 	public void addContact() {
 		System.out.println("Enter First Name : ");
 		String firstName = scanner.next();
@@ -46,6 +45,18 @@ public class AddressBook {
 		}
 	}
 
+	public void deleteContact() {
+		System.out.println("Enter the First name of Person to Delete Contact : ");
+		String deleteName = scanner.next();
+		if (deleteName.equalsIgnoreCase(person.getFirstName())) {
+			System.out.println("Deleted " + person.getFirstName() + " details");
+			person = null;
+		} else {
+			System.out.println("The Entered First Name is Not Matched");
+			deleteContact();
+		}
+	}
+
 	public static void printContact() {
 		for (int i = 0; i < contactDetailsList.size(); i++) {
 			person = contactDetailsList.get(i);
@@ -57,6 +68,5 @@ public class AddressBook {
 					+ "\n");
 		}
 	}
-
 
 }

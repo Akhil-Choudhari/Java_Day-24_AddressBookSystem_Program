@@ -7,11 +7,11 @@ import java.util.Scanner;
 public class AddressBook {
 	static ContactDetails person = new ContactDetails();
 	
-	static List<ContactDetails> contactDetailsList = new ArrayList();
+	static List<ContactDetails> contactDetailsList = new ArrayList<ContactDetails>();
+	static Scanner scanner = new Scanner(System.in);
 
 	
-	public static void addNewContact() {
-		Scanner scanner = new Scanner(System.in);
+	public void addContact() {
 		System.out.println("Enter First Name : ");
 		String firstName = scanner.next();
 		System.out.println("Enter Last Name : ");
@@ -28,12 +28,22 @@ public class AddressBook {
 		long mobileNumber = scanner.nextLong();
 		System.out.println("Enter your EmailId  : ");
 		String emailId = scanner.next();
-		scanner.close();
 
 		person = new ContactDetails(firstName, lastName, address, city, state, zipCode, mobileNumber, emailId);
 		contactDetailsList.add(person);
 		printContact();
 
+	}
+
+	public void editContact() {
+		System.out.println("Enter the first name of person to edit Contact : ");
+		String firstName = scanner.next();
+		if (firstName.equalsIgnoreCase(person.getFirstName())) {
+			addContact();
+		} else {
+			System.out.println("The Entered First Name Is Not Match");
+			editContact();
+		}
 	}
 
 	public static void printContact() {
@@ -48,9 +58,5 @@ public class AddressBook {
 		}
 	}
 
-	public static void main(String[] args) {
-		
-		addNewContact();
-	}
 
 }

@@ -6,21 +6,25 @@ import java.util.stream.Collectors;
 public class AddressBook {
 
 	ContactDetails person = new ContactDetails();
+
 	List<ContactDetails> contactDetailsList = new ArrayList<>();
+
 
 	public void addContact() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter the number of contacts you want to enter");
 		int number = scanner.nextInt();
+		
 		for (int i = 0; i < number; i++) {
 
-	
 			System.out.println("Enter the first name of person");
 			String fName = scanner.next();
+	
 			if (fName.equals(person.getFirstName())) {
 				System.out.println("The entered person is already exist. Enter new name");
 			} else {
 				System.out.println("Enter the contact details of person ");
+		
 				writeContact();
 				System.out.println("contact added Successfully");
 			}
@@ -45,14 +49,16 @@ public class AddressBook {
 		long mobileNumber = scanner.nextLong();
 		System.out.println("Enter EmailId : ");
 		String emailId = scanner.next();
+	
 		person = new ContactDetails(firstName, lastName, address, city, state, zipCode, mobileNumber, emailId);
 		contactDetailsList.add(person);
 	}
 
-	
 	public void searchByName(String name) {
+	
 		List<ContactDetails> collect = contactDetailsList.stream().filter(p -> p.getFirstName().equalsIgnoreCase(name))
 				.collect(Collectors.toList());
+		
 		for (ContactDetails contact : collect) {
 			System.out.println("Search result: " + contact);
 		}
@@ -75,6 +81,7 @@ public class AddressBook {
 			System.out.println("Search result: " + contact);
 		}
 	}
+
 
 	public void editContact() {
 		System.out.println("Enter firstname of contact you want edit");
@@ -128,7 +135,7 @@ public class AddressBook {
 							case 6:
 								System.out.println("Enter new Phone Number");
 								int newPNumber = scanner.nextInt();
-								contactDetailsList.get(i).setMobileNo(newPNumber);
+								contactDetailsList.get(i).setMobileNumber(newPNumber);
 								break;
 							case 7:
 								System.out.println("Enter new Email");
@@ -168,7 +175,8 @@ public class AddressBook {
 		}
 	}
 
-	public void searchByOptions() {
+	
+	public void viewByOptions() {
 		Scanner scanner = new Scanner(System.in);
 		while (true) {
 			System.out.println("Enter\n 1. By name\n 2. By city\n 3. By state\n 4. for previous menu");
@@ -188,7 +196,7 @@ public class AddressBook {
 			case 3:
 				System.out.println("Enter state: ");
 				String state = scanner.nextLine();
-				System.out.println(state);
+				searchByState(state);
 				break;
 			case 4:
 				return;

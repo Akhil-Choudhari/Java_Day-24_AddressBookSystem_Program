@@ -6,7 +6,6 @@ import java.util.Scanner;
 
 public class AddressBook {
 
-	
 	List<ContactDetails> contactDetailsList = new ArrayList<ContactDetails>();
 	Scanner scanner = new Scanner(System.in);
 
@@ -19,7 +18,6 @@ public class AddressBook {
 		}
 	}
 
-	
 	public void writeContact() {
 		ContactDetails person = new ContactDetails();
 		System.out.println("Enter First Name : ");
@@ -40,9 +38,8 @@ public class AddressBook {
 		String emailId = scanner.next();
 		person = new ContactDetails(firstName, lastName, address, city, state, zipCode, mobileNumber, emailId);
 		contactDetailsList.add(person);
-		printContact();
-	}
 
+	}
 
 	public void editContact() {
 		System.out.println("Enter the first name of person to edit contact");
@@ -61,6 +58,7 @@ public class AddressBook {
 		}
 	}
 
+
 	public void deleteContact() {
 		System.out.println("Enter the first name of person to delete contact");
 		String deleteName = scanner.next();
@@ -75,25 +73,11 @@ public class AddressBook {
 			contactDetailsList.remove(i);
 			System.out.println("Contact Deleted");
 			System.out.println("Remaining contacts in the book isgit");
-			printContact();
 		} else {
 			System.out.println("Contact not find");
 		}
 
 	}
 
-	public void printContact() {
-		for (int i = 0; i < contactDetailsList.size(); i++) {
-			System.out.println("Contact Details");
-			System.out.println("Name         : " + contactDetailsList.get(i).getFirstName() + " "
-					+ contactDetailsList.get(i).getLastName() + "\n" + "Address      : "
-					+ contactDetailsList.get(i).getAddress() + "\n" + "City         : "
-					+ contactDetailsList.get(i).getCity() + "\n" + "State        : "
-					+ contactDetailsList.get(i).getState() + "\n" + "ZipCode      : "
-					+ contactDetailsList.get(i).getZipCode() + "\n" + "MobileNumber : "
-					+ contactDetailsList.get(i).getMobileNumber() + "\n" + "EmailId      : "
-					+ contactDetailsList.get(i).getEmailId() + "\n");
-		}
-	}
 
 }

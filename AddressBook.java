@@ -80,10 +80,10 @@ public class AddressBook {
 		}
 		if (i < contactDetailsList.size()) {
 			contactDetailsList.remove(i);
-			System.out.println("Contact Deleted");
+			System.out.println("Contact Deleteds");
 			System.out.println("Remaining contacts in the book igsit");
 		} else {
-			System.out.println("Contact not find");
+			System.out.println("Contact not finds");
 		}
 
 	}

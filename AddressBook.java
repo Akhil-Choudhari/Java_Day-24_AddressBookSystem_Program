@@ -6,31 +6,32 @@ import java.util.stream.Collectors;
 public class AddressBook {
 
 	ContactDetails person = new ContactDetails();
-
+	
 	List<ContactDetails> contactDetailsList = new ArrayList<>();
-
 
 	public void addContact() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter the number of contacts you want to enter");
 		int number = scanner.nextInt();
-		
+	
 		for (int i = 0; i < number; i++) {
 
+		
 			System.out.println("Enter the first name of person");
 			String fName = scanner.next();
-	
+		
 			if (fName.equals(person.getFirstName())) {
 				System.out.println("The entered person is already exist. Enter new name");
 			} else {
 				System.out.println("Enter the contact details of person ");
-		
+				
 				writeContact();
 				System.out.println("contact added Successfully");
 			}
 		}
 	}
 
+	
 	public void writeContact() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter First Name : ");
@@ -49,13 +50,14 @@ public class AddressBook {
 		long mobileNumber = scanner.nextLong();
 		System.out.println("Enter EmailId : ");
 		String emailId = scanner.next();
-	
+		
 		person = new ContactDetails(firstName, lastName, address, city, state, zipCode, mobileNumber, emailId);
 		contactDetailsList.add(person);
 	}
 
-	public void searchByName(String name) {
 	
+	public void searchByName(String name) {
+		
 		List<ContactDetails> collect = contactDetailsList.stream().filter(p -> p.getFirstName().equalsIgnoreCase(name))
 				.collect(Collectors.toList());
 		
@@ -64,7 +66,7 @@ public class AddressBook {
 		}
 	}
 
-
+	
 	public void searchByCity(String city) {
 		List<ContactDetails> collect = contactDetailsList.stream().filter(p -> p.getCity().equalsIgnoreCase(city))
 				.collect(Collectors.toList());
@@ -73,7 +75,7 @@ public class AddressBook {
 		}
 	}
 
-
+	
 	public void searchByState(String state) {
 		List<ContactDetails> collect = contactDetailsList.stream().filter(p -> p.getCity().equalsIgnoreCase(state))
 				.collect(Collectors.toList());
@@ -82,7 +84,18 @@ public class AddressBook {
 		}
 	}
 
+	
+	public void countContactsByUsingCity(String cityName) {
+		long count = 0;
+		long count1 = contactDetailsList.stream().filter(g -> g.getCity().equalsIgnoreCase(cityName)).count();
+		for (ContactDetails contact : contactDetailsList) {
+			count1 = count1 + count;
+		}
+		System.out.println("Contact List :" + count1);
 
+	}
+
+	
 	public void editContact() {
 		System.out.println("Enter firstname of contact you want edit");
 		Scanner scanner = new Scanner(System.in);
@@ -160,7 +173,7 @@ public class AddressBook {
 		}
 	}
 
-
+	
 	public void deleteContact() {
 		System.out.println("Enter the first name of contact you want to delete");
 		Scanner scanner = new Scanner(System.in);
@@ -175,7 +188,7 @@ public class AddressBook {
 		}
 	}
 
-	
+
 	public void viewByOptions() {
 		Scanner scanner = new Scanner(System.in);
 		while (true) {

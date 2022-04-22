@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 public class AddressBook {
 
 	ContactDetails person = new ContactDetails();
-	
+
 	List<ContactDetails> contactDetailsList = new ArrayList<>();
 
 	public void addContact() {
@@ -16,7 +16,6 @@ public class AddressBook {
 	
 		for (int i = 0; i < number; i++) {
 
-		
 			System.out.println("Enter the first name of person");
 			String fName = scanner.next();
 		
@@ -31,7 +30,7 @@ public class AddressBook {
 		}
 	}
 
-	
+
 	public void writeContact() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter First Name : ");
@@ -55,7 +54,6 @@ public class AddressBook {
 		contactDetailsList.add(person);
 	}
 
-	
 	public void searchByName(String name) {
 		
 		List<ContactDetails> collect = contactDetailsList.stream().filter(p -> p.getFirstName().equalsIgnoreCase(name))
@@ -93,6 +91,13 @@ public class AddressBook {
 		}
 		System.out.println("Contact List :" + count1);
 
+	}
+
+	
+	public void sortByName() {
+		List<ContactDetails> list = contactDetailsList.stream().collect(Collectors.toList());
+		list.stream().sorted((g1, g2) -> ((String) g1.getFirstName()).compareTo(g2.getFirstName()))
+				.forEach(contact -> System.out.println(contact.getFirstName() + " " + contact.getLastName()));
 	}
 
 	
@@ -187,7 +192,6 @@ public class AddressBook {
 			}
 		}
 	}
-
 
 	public void viewByOptions() {
 		Scanner scanner = new Scanner(System.in);
